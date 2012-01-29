@@ -1,9 +1,10 @@
+
 public class DataStructure <E> implements List<E> {    
     //head node 
-    Node head;
+    private Node head;
     
     //size of the linkedlist, also used for indexes (start from zero)
-    int size;
+    private int size;
     
     //default constructor
     public DataStructure() {
@@ -64,8 +65,25 @@ public class DataStructure <E> implements List<E> {
     }
     
     public E get(int index) {
+        E obj;
+        Node current = head;
         
+        while(current.getNext() != null)
+        {
+            if(current.getNext().getIndex() == index)
+            {
+                obj = (E) current.getNext().getObj();
+                return obj;
+            }
+            else
+            {
+                current = current.getNext();
+            }
+        }
+        // index not found
+        return null;
     }
+    
     
     //synchronize object E index reference with this method BEFORE adding
     public int getCurrentIndex() {
@@ -78,7 +96,7 @@ public class DataStructure <E> implements List<E> {
     }
     
     //Node modules
-    public class Node <E> {
+    private class Node <E> {
         //object and index in the data structure
         E obj;
         int index;
@@ -90,28 +108,28 @@ public class DataStructure <E> implements List<E> {
         Node() {}
         
         //private methods to abstract to DataStructure only
-        Node(E obj, int index) {
+        private Node(E obj, int index) {
             this.obj = obj;
             this.index = index;
         }
         
         //set the next node in the list
-        void setNext(Node next) {
+        private void setNext(Node next) {
             this.next = next;
         }
         
         //return a reference to the next node
-        Node getNext() {
+        private Node getNext() {
             return next;
         } 
         
         //return the current node index
-        int getIndex() {
+        private int getIndex() {
             return index;
         }
         
         //return the current node's data
-        E getObj() {
+        private E getObj() {
             return obj;
         }
     }

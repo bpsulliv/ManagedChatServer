@@ -21,6 +21,6 @@ public interface ConnectionManagerAPI {
 	public int getNumberOfClients();
 	
 	//checks to see if a room exists
-	public boolean doesRoomExit();
+	public boolean doesRoomExist(String room);
 	
 }
